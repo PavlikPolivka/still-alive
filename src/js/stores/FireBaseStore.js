@@ -7,10 +7,10 @@ let _human = [];
 let _loading = true;
 let _error = false;
 let _correct = false;
-let _path = "";
+let _path = '';
 
-var Firebase = require('firebase');
-var firebase = new Firebase("https://still-alive-info.firebaseio.com/people");
+const Firebase = require('firebase');
+const firebase = new Firebase('https://still-alive-info.firebaseio.com/people');
 
 // Facebook style store creation.
 const FireBaseStore = assign({}, BaseStore, {
@@ -32,16 +32,16 @@ const FireBaseStore = assign({}, BaseStore, {
   },
 
   // register store with dispatcher, allowing actions to flow through
-  dispatcherIndex: Dispatcher.register(function handleAction(payload) {
+  dispatcherIndex: Dispatcher.register(payload => {
     const action = payload.action;
 
     switch (action.type) {
-      case Constants.ActionTypes.INIT:
+      case Constants.ActionTypes.INIT: {
         _path = action.name.trim();
-        var human = firebase.child(_path);
-        human.on("value", function(snap) {
+        const human = firebase.child(_path);
+        human.on('value', snap => {
           _loading = false;
-          if(snap.val()) {
+          if (snap.val()) {
             _human = snap.val();
           } else {
             _error = true;
@@ -49,23 +49,27 @@ const FireBaseStore = assign({}, BaseStore, {
           FireBaseStore.emitChange();
         });
         break;
-      case Constants.ActionTypes.INVALIDATE:
+      }
+      case Constants.ActionTypes.INVALIDATE: {
         _correct = true;
         FireBaseStore.emitChange();
         break;
-      case Constants.ActionTypes.VALIDATE:
+      }
+      case
+      Constants.ActionTypes.VALIDATE: {
         _correct = false;
         _loading = false;
         _human.name = action.name.trim();
         _human.status = action.alive;
         _error = false;
-        var human = firebase.child(_path);
+        const human = firebase.child(_path);
         human.set(_human);
         FireBaseStore.emitChange();
         break;
-    // add more cases for other actionTypes...
+      }
+      // add more cases for other actionTypes...
 
-    // no default
+      // no default
     }
   })
 });

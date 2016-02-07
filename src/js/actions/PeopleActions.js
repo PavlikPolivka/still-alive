@@ -7,20 +7,20 @@ export default {
   init(name) {
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.INIT,
-      name: name
+      name
     });
   },
   invalidate() {
     Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.INVALIDATE,
+      type: Constants.ActionTypes.INVALIDATE
     });
   },
   validate(url, name, alive) {
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.VALIDATE,
-      url: url,
-      name: name,
-      alive: alive
+      url,
+      name,
+      alive
     });
   }
 };

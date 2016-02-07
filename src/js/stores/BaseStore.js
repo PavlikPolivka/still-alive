@@ -1,6 +1,6 @@
 import assign from 'object-assign';
 import Constants from '../Constants';
-import {EventEmitter} from 'events';
+import { EventEmitter } from 'events';
 
 export default assign({}, EventEmitter.prototype, {
   // Allow Controller-View to register itself with store

@@ -17,6 +17,12 @@ If you prefer to just build without the live reload and build-on-each-change wat
 $ npm run build
 ```
 
+## Preparation for release
+
+After build you can prepare release (minamilization of js and css files)
+```bash
+$ npm run release
+```
 
 ## Generating Additional Code
 

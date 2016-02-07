@@ -1,0 +1,6 @@
+/dev
+/.idea
+/release
+/bower_components/
+/dist/
+/node_modules/
